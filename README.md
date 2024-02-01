@@ -9,17 +9,18 @@ On the server side, each user is associated with one JWT by a unique identifier 
 
 Additionally, the app utilizes WebSockets for real-time features, leveraging Rails' built-in ActionCable. By integrating the ActionCable package on the client side, users can send messages that are instantly received by their friends without the need to refresh the page.
 
-Below is the list of core technology I use in this app.
-For my backend:
-    Framework: Ruby on rails
-    Authentication: json web token (JWT) with JWT gem and warden gem
-    Database: PostgreSQL
-    Handling cross-origin resource sharing: gem rack-cors
-    Websocket: actioncable (Rails built in)
-For my frontend: 
-    Library: React
-    Tool: Vite 
-    Routing: react-router-dom package
-    Websocket: actioncable-websocket package
-    Styling: css module
-For more detail, you can check out the config directory, Gemfile and package.json files
+Below is the list of core technology I use in this app. For more detail, you can check out the config directory, Gemfile and package.json files
+
++ For my backend:
+    - Framework: Ruby on rails
+    - Authentication: json web token (JWT) with JWT gem and warden gem
+    - Database: PostgreSQL
+    - Handling cross-origin resource sharing: gem rack-cors
+    - Websocket: actioncable (Rails built in)
++ For my frontend: 
+    - Library: React
+    - Tool: Vite 
+    - Routing: react-router-dom package
+    - Websocket: actioncable-websocket package
+    - Styling: css module
+

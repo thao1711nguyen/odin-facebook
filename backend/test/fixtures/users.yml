@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ana:
+  username: 'ana'
+  friends: alice, chloe, david
+  # password_digest: MyString
+  # jti: MyString
+
+alice:
+  username: 'alice'
+  # password_digest: MyString
+  # jti: MyString
+
+chloe: 
+  username: 'chloe'
+
+david: 
+  username: 'david'
+
+diana: 
+  username: 'diana'
+
+jack: 
+  username: 'jack'
+
+kilian: 
+  username: 'kilian'

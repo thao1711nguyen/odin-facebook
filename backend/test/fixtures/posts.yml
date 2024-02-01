@@ -1,0 +1,22 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% current_time = Time.current %>
+one:
+  content: MyString
+  user: ana
+  created_at: <%= current_time %>
+
+two:
+  content: MyString
+  user: alice 
+  created_at: <%= current_time + 1.minutes  %>
+
+
+three: 
+  content: "woifjw"
+  user: chloe
+  created_at: <%= current_time + 2.minutes %>
+
+four: 
+  content: "wiu"
+  user: kilian
+  created_at: <%= current_time + 3.minutes %>
