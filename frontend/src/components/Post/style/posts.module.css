@@ -1,0 +1,12 @@
+.bigContainer {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+}
+.smallContainer {
+    overflow: auto;
+    grid-area: 1/2/-1/3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}

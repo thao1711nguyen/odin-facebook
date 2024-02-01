@@ -1,0 +1,45 @@
+.container {
+    justify-self: stretch;
+}
+.smallContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.deleteBtn {
+    grid-area: 1/2/-1/-1;
+    align-self: start;
+    justify-self: start;
+}
+.messContainer {
+    grid-area: 1/1/-1/2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.messages {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.message {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.incomingMess {
+    display: flex;
+    flex-direction: row;
+}
+.incomingMess > textarea {
+    overflow: auto;
+}
+.sendBtn {
+    /* align-self: ; */
+}
+.content {
+    margin-left: 10px;
+}
+.sender {
+    font-weight: bold;
+}

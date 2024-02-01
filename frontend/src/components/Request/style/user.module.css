@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.name {
+    font-size: 18px;
+}
+.container > button {
+    font-size: 12px;
+}
+

@@ -1,0 +1,14 @@
+.container {
+    justify-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+input {
+    font-size: 17px;
+}
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

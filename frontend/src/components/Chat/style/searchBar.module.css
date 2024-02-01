@@ -1,0 +1,9 @@
+.container {
+    justify-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.list {
+    display: flex;
+}

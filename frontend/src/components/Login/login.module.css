@@ -1,0 +1,42 @@
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    align-items: center;
+    justify-items: start;
+}
+/*  */
+.rightContainer {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form > div{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+.button {
+    margin-top: 10px;
+}
+
+/*  */
+
+.leftContainer {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+
+}
+.leftContainer > img {
+    max-height: 550px;
+    object-fit: contain;
+}
