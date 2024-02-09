@@ -16,5 +16,6 @@
 .sent, .received {
     justify-self: stretch;
     display: grid;
+    gap: 10px;
     grid-template-columns: repeat(4, 1fr);
 }
