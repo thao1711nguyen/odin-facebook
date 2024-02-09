@@ -7,8 +7,8 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "https://odin-facebook-frontend.onrender.com/"
-
+    origins "https://odin-facebook-frontend.onrender.com"
+    # origins "*"
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head], 
