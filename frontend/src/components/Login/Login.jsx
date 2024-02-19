@@ -26,7 +26,11 @@ export default function Login() {
             }).catch((error) => {
                 setUsername("")
                 setPassword("")
-                setError(error.response.data.error)
+                if(error.response.status == 401) {
+                    setError("Incorrect username or password, please try again!")
+                } else {
+                    setError(error.response.data.error)
+                }
             })
             
     }
