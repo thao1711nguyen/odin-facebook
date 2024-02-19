@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from "react"
 import axios from "axios"
 import Post from "./Post"
 import Error from "../Error"
-import { useOutletContext } from "react-router-dom"
+import { useOutletContext, Navigate } from "react-router-dom"
 import PostNew from "./PostNew"
 import style from "./style/posts.module.css"
 
@@ -57,14 +57,18 @@ export default function Posts() {
     }, [apiUrl, token])
    
     return(
-        <div className={style.bigContainer}>
-            <div className={style.smallContainer}>
-                { isLoading && <>...Loading</>  }
-                {error && <Error requestError={error} />}
-                <button type="button" onClick={() => setCreating(true)}>Create post</button>
-                {creating && <PostNew setCreating={setCreating} dispatch={dispatch} />}
-                {posts.map((post) => <Post post={post} key={post.id} dispatch={dispatch} />)}
+        <>
+            {!token && <Navigate to="/login" replace={true} />}
+
+            <div className={style.bigContainer}>
+                <div className={style.smallContainer}>
+                    { isLoading && <>...Loading</>  }
+                    {error && <Error requestError={error} />}
+                    <button type="button" onClick={() => setCreating(true)}>Create post</button>
+                    {creating && <PostNew setCreating={setCreating} dispatch={dispatch} />}
+                    {posts.map((post) => <Post post={post} key={post.id} dispatch={dispatch} />)}
+                </div>
             </div>
-        </div>
+        </>
     )
 }

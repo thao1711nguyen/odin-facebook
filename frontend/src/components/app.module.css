@@ -49,3 +49,13 @@
 .greet > p {
     justify-self: end;
 }
+.loadContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+}
+.loadContainer > .soChild {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}

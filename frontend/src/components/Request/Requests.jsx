@@ -1,16 +1,18 @@
 import { useState } from "react"
-import {useOutletContext } from "react-router-dom"
+import {useOutletContext, Navigate } from "react-router-dom"
 import Sent from "./Sent"
 import Received from "./Received"
 import SearchBar from "./SearchBar"
 import style from "./style/requests.module.css"
 export default function Requests() {
     const [action, setAction] = useState(null)
-    const {data} = useOutletContext()
+    const {data, token} = useOutletContext()
     const sents = data.requests.sent_requests
     const receiveds = data.requests.received_requests
     return(
-        <div className={style.container}>
+        <>
+            {!token && <Navigate to="/login" replace={true} />}
+            <div className={style.container}>
             <div className={style.btnContainer}> 
                 <button type="button" onClick={() => setAction("add")}>Add</button>
                 <button type="button" onClick={() => setAction("sent")}>Sent requests</button>
@@ -29,5 +31,7 @@ export default function Requests() {
                 </div>
             }
         </div>
+        </>
+        
     )
 }

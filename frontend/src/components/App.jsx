@@ -1,4 +1,4 @@
-import { Outlet, Link, useNavigate } from "react-router-dom"
+import { Outlet, Link, useLocation} from "react-router-dom"
 import { useEffect, useReducer, useState } from "react"
 import {dataReducer} from "./data"
 import axios from "axios"
@@ -6,9 +6,9 @@ import ActionCable from "actioncable"
 import style from "./app.module.css"
 export default function App() {
     const [token, setToken] = useState(localStorage.getItem("token"))
+    const [loading, setLoading] = useState(true)
     const [data, dispatch] = useReducer(dataReducer, {user: {}, users: [], friShips: [], chats: [], requests: []})
-    // const [noti, notiDispatch] = useReducer(notiReducer, {fri: 0, req: 0, chat: 0})
-    const navigate = useNavigate()
+    const location = useLocation()
     const apiUrl = import.meta.env.VITE_REACT_APP_API_BASE_URL
     const wsUrl = import.meta.env.VITE_REACT_APP_WS_BASE_URL
     useEffect(() => {
@@ -53,11 +53,12 @@ export default function App() {
                         requests: responses[4].data
                     }
                 })
+                setLoading(false)
             } catch(error) {
                 if(error.response.status == 401) {
                     localStorage.removeItem("token")
                     setToken(null)
-                    navigate("/login")
+                    // navigate("/login")
                 } else {
                     console.log(error)
                 }
@@ -69,7 +70,7 @@ export default function App() {
     }, [token])
     
     useEffect(() => {
-        if(data.user) {
+        if(Object.keys(data.user).length > 0) {
             const consumer = ActionCable.createConsumer(`${wsUrl}?token=${token}`)
             consumer.subscriptions.create({channel: "RequestsChannel", user: data.user.id}, {
                 connected(){
@@ -82,10 +83,7 @@ export default function App() {
                         type: "req", 
                         data: data
                     })
-                    // notiDispatch({
-                    //     type: "add", 
-                    //     name: "req"
-                    // })
+                    
                 }
             })
             consumer.subscriptions.create({channel: "FriendshipsChannel", user: data.user.id}, {
@@ -101,10 +99,7 @@ export default function App() {
                         type: "fs", 
                         data: data
                     })
-                    // notiDispatch({
-                    //     type: "add", 
-                    //     name: "fri"
-                    // })
+                    
                 }
             })
             consumer.subscriptions.create({channel: "ChatsChannel", user: data.user.id}, {
@@ -119,10 +114,7 @@ export default function App() {
                         type: "chat", 
                         data: data
                     })
-                    // notiDispatch({
-                    //     type: "add", 
-                    //     name: "chat"
-                    // })
+                    
                 }
             })
             return(() => {
@@ -141,16 +133,24 @@ export default function App() {
             localStorage.removeItem("token")
             setToken(null)
             alert("You just logged out")
-            navigate("/login")
         }).catch((error) => console.log(error))
     }
     return(
         <div className={style.container}>
             <div className={style.title}>
                 <h1>Mini Facebook</h1>
-
             </div>
-            { token &&
+            {loading && location.pathname != "/login" 
+                    && location.pathname != "/signup" &&
+                <div className={style.loadContainer}>
+                    <div>...Loading</div>
+                    <div className={style.soChild}>
+                        <p>Sorry for this inconvenience, I used free plan offered by </p>
+                        <a href="https://render.com/ " rel="noreferrer" target="_blank" >Render</a> 
+                        <p> so it may take a few minutes to load data</p>
+                    </div>
+                </div>}
+            { token && !loading &&
                 <div className={style.btnContainer}>
                     
                     <nav className={style.nav}>
@@ -177,7 +177,7 @@ export default function App() {
                 </div>
             }
             <div id="content" className={style.childContainer}>
-                <Outlet context={{data: data, token: token, setToken: setToken, apiUrl: apiUrl}}/>
+                <Outlet context={{data: data, token: token, setToken: setToken, apiUrl: apiUrl}}/> :
             </div>
         </div>
                 

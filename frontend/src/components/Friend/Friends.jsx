@@ -1,15 +1,17 @@
 import { useState } from "react"
-import { useOutletContext } from "react-router-dom"
+import { useOutletContext, Navigate } from "react-router-dom"
 import Friend from "./Friend"
 import SearchBar from "./SearchBar"
 import style from "./style/friends.module.css"
 export default function Friends() {
     const [action, setAction] = useState(null)
     const [list, setList] = useState([])
-    const {data} = useOutletContext()
+    const {data, token} = useOutletContext()
     const {friShips, user} = data
     return(
-        <div className={style.container}>
+        <>
+            {!token && <Navigate to="/login" replace={true} />}
+            <div className={style.container}>
             <div className={style.btnContainer}>
                 <button type="button" onClick={() => setAction("all")}>All friends</button>
                 <button type="button" onClick={() => setAction("find")}>Find</button>
@@ -30,5 +32,7 @@ export default function Friends() {
                 }
             </div>
         </div>
+        </>
+        
     )
 }
